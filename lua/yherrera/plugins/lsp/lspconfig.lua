@@ -107,6 +107,14 @@ return {
 				lspconfig["snyk_ls"].setup({
 					capabilities = capabilities,
 					filetypes = { "javascriptreact", "typescriptreact", "json", "python", "helm", "yaml", "java" },
+					init_options = {
+						activateSnykCode = "true",
+					},
+					settings = {
+						token = "7c1bbb61-667c-4282-a755-4e4357ae2101",
+						endpoint = "https://api.eu.snyk.io/v1/",
+						integrationName = "NVIM",
+					},
 				})
 			end,
 
