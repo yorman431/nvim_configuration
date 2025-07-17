@@ -103,66 +103,57 @@ return {
 					},
 				})
 			end,
+		})
 
-			["snyk_ls"] = function()
-				-- configure snyk_ls server
-				vim.lsp.config("snyk_ls", {
-					capabilities = capabilities,
-					filetypes = { "javascriptreact", "typescriptreact", "json", "python", "helm", "yaml", "java" },
-					init_options = {
-						activateSnykCode = "true",
-					},
-					settings = {
-						token = "7c1bbb61-667c-4282-a755-4e4357ae2101",
-						endpoint = "https://api.eu.snyk.io/v1/",
-						integrationName = "NVIM",
-					},
-				})
-			end,
+		vim.lsp.config("snyk_ls", {
+			capabilities = capabilities,
+			filetypes = { "javascriptreact", "typescriptreact", "json", "python", "helm", "yaml", "java" },
+			init_options = {
+				activateSnykCode = "true",
+			},
+			settings = {
+				token = "5918bc29-f2a2-462e-8f36-26e9ecbf0e03",
+				endpoint = "https://api.snyk.io/v1/",
+				integrationName = "NVIM",
+			},
+		})
 
-			["graphql"] = function()
-				-- configure graphql language server
-				vim.lsp.config("graphql", {
-					capabilities = capabilities,
-					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-				})
-			end,
-
-			["emmet_ls"] = function()
-				-- configure emmet language server
-				vim.lsp.config("emmet_ls", {
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"typescriptreact",
-						"javascriptreact",
-						"css",
-						"sass",
-						"scss",
-						"less",
-						"svelte",
-						"java",
+		vim.lsp.config("lua_ls", {
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					-- make the language server recognize "vim" global
+					diagnostics = {
+						globals = { "vim" },
 					},
-				})
-			end,
-
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				vim.lsp.config("lua_ls", {
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
+					completion = {
+						callSnippet = "Replace",
 					},
-				})
-			end,
+				},
+			},
 		})
 	end,
+	vim.diagnostic.config({
+		virtual_lines = true,
+		-- virtual_text = true,
+		underline = true,
+		update_in_insert = false,
+		severity_sort = true,
+		float = {
+			border = "rounded",
+			source = true,
+		},
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = "󰅚 ",
+				[vim.diagnostic.severity.WARN] = "󰀪 ",
+				[vim.diagnostic.severity.INFO] = "󰋽 ",
+				[vim.diagnostic.severity.HINT] = "󰌶 ",
+			},
+			numhl = {
+				[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+				[vim.diagnostic.severity.WARN] = "WarningMsg",
+			},
+		},
+	}),
 }
