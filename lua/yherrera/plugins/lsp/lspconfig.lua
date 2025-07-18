@@ -112,7 +112,7 @@ return {
 				activateSnykCode = "true",
 			},
 			settings = {
-				token = "5918bc29-f2a2-462e-8f36-26e9ecbf0e03",
+				token = os.getenv("SNYK_TOKEN"),
 				endpoint = "https://api.snyk.io/v1/",
 				integrationName = "NVIM",
 			},
